@@ -19,6 +19,14 @@ class CIDTemplateApp(QMainWindow):
         self.layout = QVBoxLayout()
         self.central_widget.setLayout(self.layout)
 
+
+
+        # Create a button to generate the template...
+
+        # ...
+
+
+
         # Create labels
         self.casefile_label = QLabel("(Maximize the app first to see full)\nUndercover operations", self)
         self.layout.addWidget(self.casefile_label)
@@ -58,6 +66,15 @@ class CIDTemplateApp(QMainWindow):
 
         self.photo_of_the_suspect_line_edit = QLineEdit(self)
         self.layout.addWidget(self.photo_of_the_suspect_line_edit)
+
+        self.background_check_label = QLabel("Background Check[Add /id and /number of the suspect then how you "
+                                             "obtained his / her name ICly]:")
+        self.layout.addWidget(self.background_check_label)
+
+        self.background_check_edit = QTextEdit(self)
+        self.layout.addWidget(self.background_check_edit)
+
+
 
         self.operations_label = QLabel("Operation Information", self)
         self.layout.addWidget(self.operations_label)
@@ -114,11 +131,7 @@ class CIDTemplateApp(QMainWindow):
         self.dropping_edit = QLineEdit(self)
         self.layout.addWidget(self.dropping_edit)
 
-        self.background_check_label = QLabel("Background Check:")
-        self.layout.addWidget(self.background_check_label)
 
-        self.background_check_edit = QLineEdit(self)
-        self.layout.addWidget(self.background_check_edit)
 
         # Create a button to generate the template
         self.generate_template_button = QPushButton("Generate Template", self)
@@ -140,7 +153,7 @@ class CIDTemplateApp(QMainWindow):
         pressing_charges = self.pressing_charges_edit.text()
         dropping_the_stuff = self.dropping_edit.text()
         charges = self.charges_edit.text()
-        background_check = self.background_check_edit.text()
+        background_check = self.background_check_edit.toPlainText()
 
         # Create the template with BBCodes and
         template = f"[CENTER][IMG]https://i.imgur.com/ndAN0Ss.png?1[/IMG]\n[FONT=Century Gothic][COLOR=#FFFFFF][SIZE=5]Undercover Operation\n[/SIZE][/COLOR][/FONT][IMG]https://i.imgur.com/5Iceuzj.png[/IMG][/CENTER]\n\n[SIZE=4][U]Agent(s) Information[/U][/SIZE]\n\n[B]Date of Operation[/B]\n[INDENT]{date}[/INDENT]\n\n[B]Operating Agent(s)[/B]\n[INDENT][list][*]{operating_agents}[/list][/INDENT]\n\n[SIZE=4][U]Suspect(s) Information[/U][/SIZE]\n\n[B]Suspect Name(s):[/B]\n[INDENT]{full_name}[/INDENT]\n\n[B]Suspect's Phone Number:[/B]\n[INDENT]{phone_number}[/INDENT]\n\n[B]Photograph of the Suspect:[/B]\n[INDENT]{photo_of_the_suspect}[/INDENT]\n\n[B]Background check:[/B]\n[INDENT][spoiler]{background_check}[/spoiler][/INDENT]\n\n[SIZE=4][U]Operation Information[/U][/SIZE]\n\n[B]Operation's type[/B]\n[INDENT]{operation_type}[/INDENT]\n\n[B]Number of suspects[/B]\n[INDENT]{number_of_sus}[/INDENT]\n\n[I][B]Charges[/B][/I]\n[INDENT][list][*]{charges}[/LIST][/INDENT]\n\n[B]Photographic and/or video-recorded evidence[/B]\n[spoiler]\n\nThe meeting and deal  :\n[spoiler]{meeting_n_deal}[/spoiler]\n\nEvidence of suspect distributing illegal stuff :\n[Spoiler]{evidence_of_sus_distribute}[/spoiler]\n\nConfiscation of illegal stuff from the suspect :\n[Spoiler]{confiscation_of_illegal_stuff}[/spoiler]\n\nPressing Charges followed by his arrest :\n[Spoiler]{pressing_charges}[/spoiler]\n\nDropping the confiscated stuff into the FBI Dropbox\n[Spoiler]{dropping_the_stuff}[/spoiler][/spoiler][INDENT][/INDENT]"
